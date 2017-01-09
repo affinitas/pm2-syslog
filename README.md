@@ -22,7 +22,7 @@ $ sudo service rsyslog restart
 
 ```
 # Install
-$ pm2 install pm2-syslog
+$ pm2 install affinitas/pm2-syslog
 
 # Uninstall
 $ pm2 uninstall pm2-syslog
