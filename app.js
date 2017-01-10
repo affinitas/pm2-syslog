@@ -1,9 +1,11 @@
 
 var pm2       = require('pm2');
 var SysLogger = require('ain2');
-var logger    = new SysLogger({tag: 'pm2',  facility: 'local1', hostname: 'test'});
+var logger    = new SysLogger({tag: 'pm2',  facility: 'local1'});
 logger.setMessageComposer(function(message, severity){
-  return new Buffer('<' + (this.facility * 8 + severity) + '> ');
+  var buf = new Buffer('<' + (this.facility * 8 + severity) + '> ' + message);
+  var str = buf.toString().replace('localhost ', '');
+  return str;
 });
 
 
