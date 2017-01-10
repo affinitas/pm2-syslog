@@ -5,8 +5,7 @@ var logger    = new SysLogger({tag: 'pm2',  facility: 'local1'});
 
 logger.setMessageComposer(function(message, severity){
   return new Buffer('<' + (this.facility * 8 + severity) + '>' +
-          this.getDate() +
-          this.tag + '[' + process.pid + ']:' + message);
+          this.getDate() + message);
 });
 
 
