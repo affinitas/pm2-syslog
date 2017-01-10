@@ -4,7 +4,9 @@ var SysLogger = require('ain2');
 var logger    = new SysLogger({tag: 'pm2',  facility: 'local1'});
 
 logger.setMessageComposer(function(message, severity){
-  return new Buffer(message);
+  return new Buffer('<' + (this.facility * 8 + severity) + '>' +
+          this.getDate() + ' ' + this.hostname + ' ' +
+          this.tag + '[' + process.pid + ']:' + message);
 });
 
 
@@ -26,11 +28,4 @@ pm2.launchBus(function(err, bus) {
   bus.on('log:out', function(data) {
     logger.log('%s', data.data);
   });
- //  bus.on('log:err', function(data) {
- //   logger.error('app=%s id=%s line=%s', data.process.name, data.process.pm_id, data.data);
- // });
- //
- // bus.on('log:out', function(data) {
- //   logger.log('app=%s id=%s line=%s', data.process.name, data.process.pm_id, data.data);
- // });
 });
