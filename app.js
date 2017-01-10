@@ -18,11 +18,11 @@ pm2.launchBus(function(err, bus) {
     }
   });
 
-  bus.on('log:err', function(data) {
-    logger.error('%s', data.data);
-  });
-
-  bus.on('log:out', function(data) {
-    logger.log('%s', data.data);
-  });
+  // bus.on('log:err', function(data) {
+  //   logger.error('%s', data.data);
+  // });
+  //
+  // bus.on('log:out', function(data) {
+  //   logger.log('%s', data.data);
+  // });
 });
